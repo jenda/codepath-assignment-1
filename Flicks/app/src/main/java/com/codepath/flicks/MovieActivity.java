@@ -3,8 +3,10 @@ package com.codepath.flicks;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.codepath.flicks.adapters.MovieArrayAdapter;
 import com.codepath.flicks.models.Movie;
 import com.codepath.flicks.models.Movies;
 import com.loopj.android.http.AsyncHttpClient;
@@ -22,13 +24,17 @@ import cz.msebera.android.httpclient.Header;
 public class MovieActivity extends AppCompatActivity {
 
     List<Movie> movies;
+    MovieArrayAdapter movieArrayAdapter;
+    ListView movieListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
         movies = new ArrayList<>();
-
+        movieListView = (ListView) findViewById(R.id.moviesListView);
+        movieArrayAdapter = new MovieArrayAdapter(this, movies);
+        movieListView.setAdapter(movieArrayAdapter);
         String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -46,7 +52,8 @@ public class MovieActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                movies = Movies.fromJsonArray(movieJSONResults);
+                movies.addAll(Movies.fromJsonArray(movieJSONResults));
+                movieArrayAdapter.notifyDataSetChanged();
             }
 
             @Override

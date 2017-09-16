@@ -10,7 +10,7 @@ import org.json.JSONObject;
 public class Movie {
 
     public String getPosterPath() {
-        return String.format("https://image.tmdb.org/t/p/w342/s%", posterPath);
+        return String.format("https://image.tmdb.org/t/p/w342%s", posterPath);
     }
 
     public String getOriginalTitle() {
@@ -27,7 +27,7 @@ public class Movie {
 
     public Movie(JSONObject jsonObject) throws JSONException {
         this.posterPath = jsonObject.getString("poster_path");
-        this.originalTitle = jsonObject.getString("origina_title");
+        this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
     }
 }
