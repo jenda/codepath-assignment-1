@@ -17,6 +17,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 import static android.R.attr.resource;
 import static com.codepath.flicks.R.id.overviewTextView;
 import static com.codepath.flicks.R.id.posterImageView;
@@ -64,6 +66,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         Picasso.with(getContext())
                 .load(movie.getPosterPath())
                 .placeholder(android.R.drawable.ic_menu_report_image)
+                .transform(new RoundedCornersTransformation(10, 10))
                 .into(viewHolder.posterImageView);
         return convertView;
     }
