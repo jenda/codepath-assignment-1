@@ -18,12 +18,22 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import static android.R.attr.resource;
+import static com.codepath.flicks.R.id.overviewTextView;
+import static com.codepath.flicks.R.id.posterImageView;
+import static com.codepath.flicks.R.id.titleTextView;
 
 /**
  * Created by jan_spidlen on 9/16/17.
  */
 
 public class MovieArrayAdapter extends ArrayAdapter<Movie> {
+
+    static class ViewHolder {
+        ImageView posterImageView;
+        TextView titleTextView;
+        TextView overviewTextView;
+    }
+
     public MovieArrayAdapter(@NonNull Context context, @NonNull List<Movie> objects) {
         super(context, android.R.layout.simple_list_item_1, objects);
     }
@@ -32,21 +42,26 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Movie movie = getItem(position);
-
+        ViewHolder viewHolder;
         if (convertView == null) {
+            viewHolder = new ViewHolder();
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
             convertView = layoutInflater.inflate(R.layout.movie_item, parent, false);
+            viewHolder.titleTextView = (TextView) convertView.findViewById(titleTextView);
+            viewHolder.overviewTextView = (TextView) convertView.findViewById(overviewTextView);
+            viewHolder.posterImageView = (ImageView) convertView.findViewById(posterImageView);
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder)convertView.getTag();
         }
-        ImageView posterImageView = (ImageView) convertView.findViewById(R.id.posterImageView);
-        posterImageView.setImageResource(0);
 
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.titleTextView);
-        TextView overviewTextView = (TextView) convertView.findViewById(R.id.overviewTextView);
+        viewHolder.posterImageView.setImageResource(0);
 
-        titleTextView.setText(movie.getOriginalTitle());
-        overviewTextView.setText(movie.getOverview());
+        viewHolder.titleTextView.setText(movie.getOriginalTitle());
+        viewHolder.overviewTextView.setText(movie.getOverview());
 
-        Picasso.with(getContext()).load(movie.getPosterPath()).into(posterImageView);
+        Picasso.with(getContext()).load(movie.getPosterPath()).into(viewHolder.posterImageView);
         return convertView;
     }
 }
