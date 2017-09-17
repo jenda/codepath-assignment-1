@@ -61,7 +61,10 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         viewHolder.titleTextView.setText(movie.getOriginalTitle());
         viewHolder.overviewTextView.setText(movie.getOverview());
 
-        Picasso.with(getContext()).load(movie.getPosterPath()).into(viewHolder.posterImageView);
+        Picasso.with(getContext())
+                .load(movie.getPosterPath())
+                .placeholder(android.R.drawable.ic_menu_report_image)
+                .into(viewHolder.posterImageView);
         return convertView;
     }
 }
