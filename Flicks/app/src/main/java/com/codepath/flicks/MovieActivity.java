@@ -19,26 +19,29 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class MovieActivity extends AppCompatActivity {
 
     List<Movie> movies;
     MovieArrayAdapter movieArrayAdapter;
-    ListView movieListView;
+
+    @BindView(R.id.moviesListView)ListView movieListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+        ButterKnife.bind(this);
 
         movies = new ArrayList<>();
-        movieListView = (ListView) findViewById(R.id.moviesListView);
         movieArrayAdapter = new MovieArrayAdapter(this, movies);
         movieListView.setAdapter(movieArrayAdapter);
         String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
         AsyncHttpClient client = new AsyncHttpClient();
-        Toast.makeText(getApplicationContext(), "geat", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "get", Toast.LENGTH_LONG).show();
         client.get(url, new JsonHttpResponseHandler() {
 
             @Override

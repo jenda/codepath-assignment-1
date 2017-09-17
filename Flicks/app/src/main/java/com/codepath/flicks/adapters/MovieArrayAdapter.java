@@ -17,12 +17,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
-import static android.R.attr.resource;
-import static com.codepath.flicks.R.id.overviewTextView;
-import static com.codepath.flicks.R.id.posterImageView;
-import static com.codepath.flicks.R.id.titleTextView;
 
 /**
  * Created by jan_spidlen on 9/16/17.
@@ -31,9 +29,13 @@ import static com.codepath.flicks.R.id.titleTextView;
 public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
     static class ViewHolder {
-        ImageView posterImageView;
-        TextView titleTextView;
-        TextView overviewTextView;
+        @BindView(R.id.posterImageView) ImageView posterImageView;
+        @BindView(R.id.titleTextView) TextView titleTextView;
+        @BindView(R.id.overviewTextView) TextView overviewTextView;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 
     public MovieArrayAdapter(@NonNull Context context, @NonNull List<Movie> objects) {
@@ -46,13 +48,9 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         Movie movie = getItem(position);
         ViewHolder viewHolder;
         if (convertView == null) {
-            viewHolder = new ViewHolder();
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
             convertView = layoutInflater.inflate(R.layout.movie_item, parent, false);
-            viewHolder.titleTextView = (TextView) convertView.findViewById(titleTextView);
-            viewHolder.overviewTextView = (TextView) convertView.findViewById(overviewTextView);
-            viewHolder.posterImageView = (ImageView) convertView.findViewById(posterImageView);
-
+            viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder)convertView.getTag();
