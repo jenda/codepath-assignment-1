@@ -41,6 +41,9 @@ public class MovieActivity extends AppCompatActivity {
         movieArrayAdapter = new MovieArrayAdapter(this, movies);
         movieListView.setAdapter(movieArrayAdapter);
         controller = new Controller(movies, movieArrayAdapter);
+
+        movieListView.setOnScrollListener(controller);
+
         controller.pullForNewData();
     }
 }

@@ -25,15 +25,21 @@ public class Movie {
         return overview;
     }
 
+    public int getId() {
+        return id;
+    }
+
     String posterPath;
     String originalTitle;
     String overview;
     String backdropPath;
+    int id;
 
     public Movie(JSONObject jsonObject) throws JSONException {
         this.posterPath = jsonObject.getString("poster_path");
         this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
         this.backdropPath = jsonObject.getString("backdrop_path");
+        this.id = jsonObject.getInt("id");
     }
 }
