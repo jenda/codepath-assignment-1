@@ -39,10 +39,15 @@ public class Movie implements Serializable {
         return popularity;
     }
 
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
     String posterPath;
     String originalTitle;
     String overview;
     String backdropPath;
+    String releaseDate;
     int id;
     double voteAverage;
     double popularity;
@@ -52,6 +57,7 @@ public class Movie implements Serializable {
         this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
         this.backdropPath = jsonObject.getString("backdrop_path");
+        this.releaseDate = jsonObject.getString("release_date");
         this.id = jsonObject.getInt("id");
         this.voteAverage = jsonObject.getDouble("vote_average");
         this.popularity = jsonObject.getDouble("popularity");

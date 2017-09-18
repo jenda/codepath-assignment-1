@@ -46,6 +46,7 @@ public class MovieInfoFragment extends DialogFragment {
 
     private Movie movie;
     @BindView(R.id.titleTextView)TextView titleTextView;
+    @BindView(R.id.releaseDateTextView)TextView releaseDateTextView;
     @BindView(R.id.overviewTextView)TextView overviewTextView;
     @BindView(R.id.backDropImageView)ImageView backDropImageView;
     @BindView(R.id.ratingBar)RatingBar ratingBar;
@@ -64,6 +65,7 @@ public class MovieInfoFragment extends DialogFragment {
 
         titleTextView.setText(movie.getOriginalTitle());
         overviewTextView.setText(movie.getOverview());
+        releaseDateTextView.setText(movie.getReleaseDate());
 
         Picasso.with(getActivity())
                 .load(movie.getBackdropPath())
@@ -71,9 +73,6 @@ public class MovieInfoFragment extends DialogFragment {
                 .placeholder(android.R.drawable.ic_menu_report_image)
                 .transform(new RoundedCornersTransformation(10, 10))
                 .into(backDropImageView);
-
-//        ratingBar.setMax(10);
-//        ratingBar.set
         ratingBar.setRating((float)movie.getVoteAverage());
         return v;
     }
