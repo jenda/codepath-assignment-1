@@ -33,12 +33,15 @@ The following **bonus** features are implemented:
 The following **additional** features are implemented:
 
 * [ ] List anything else that you can get done to improve the app functionality!
+* some basic UI improvements 
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+[Imgur 1](https://i.imgur.com/VOx5pzg.gifv)
+
+[Imgur 2](https://i.imgur.com/nzFhwvk.gifv)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -53,7 +56,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2017 Jan Spidlen
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
