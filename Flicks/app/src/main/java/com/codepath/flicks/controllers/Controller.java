@@ -1,12 +1,15 @@
 package com.codepath.flicks.controllers;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.codepath.flicks.adapters.MovieArrayAdapter;
 import com.codepath.flicks.models.Movie;
 import com.codepath.flicks.models.Movies;
+import com.codepath.flicks.view.MovieInfoFragment;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -87,4 +90,11 @@ public class Controller implements AbsListView.OnScrollListener {
             this.pullForNewData();
         }
     }
+
+//    @Override
+//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        Movie m = movieArrayAdapter.getItem(position);
+//        Log.d("jenda", m.getOriginalTitle());
+//        MovieInfoFragment.newInstance(m).showDialog(m);
+//    }
 }
