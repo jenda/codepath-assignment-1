@@ -58,8 +58,6 @@ public class Controller implements AbsListView.OnScrollListener {
                     movieJSONResults = response.getJSONArray("results");
                     nextPage = response.getInt("page") + 1;
                     totalPages = response.getInt("total_pages");
-                    Log.d("jenda", "page: " + nextPage);
-                    Log.d("jenda", "totalPages: " + totalPages);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -81,15 +79,10 @@ public class Controller implements AbsListView.OnScrollListener {
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-
     }
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        Log.d("jenda", "firstVisibleItem " + firstVisibleItem);
-        Log.d("jenda", "visibleItemCount " + visibleItemCount);
-        Log.d("jenda", "totalItemCount " + totalItemCount);
-
         if (firstVisibleItem + visibleItemCount == totalItemCount) {
             this.pullForNewData();
         }
