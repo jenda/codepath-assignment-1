@@ -57,10 +57,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-
         viewHolder.titleTextView.setText(movie.getOriginalTitle());
         viewHolder.overviewTextView.setText(movie.getOverview());
-
 
         if (viewHolder.posterImageView != null) {
             viewHolder.posterImageView.setImageResource(0);
