@@ -29,7 +29,8 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
     static class ViewHolder {
-        @BindView(R.id.posterImageView) ImageView posterImageView;
+        @Nullable @BindView(R.id.posterImageView) ImageView posterImageView;
+        @Nullable @BindView(R.id.backdropImage) ImageView backdropImageView;
         @BindView(R.id.titleTextView) TextView titleTextView;
         @BindView(R.id.overviewTextView) TextView overviewTextView;
 
@@ -56,16 +57,27 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-        viewHolder.posterImageView.setImageResource(0);
 
         viewHolder.titleTextView.setText(movie.getOriginalTitle());
         viewHolder.overviewTextView.setText(movie.getOverview());
 
-        Picasso.with(getContext())
-                .load(movie.getPosterPath())
-                .placeholder(android.R.drawable.ic_menu_report_image)
-                .transform(new RoundedCornersTransformation(10, 10))
-                .into(viewHolder.posterImageView);
+
+        if (viewHolder.posterImageView != null) {
+            viewHolder.posterImageView.setImageResource(0);
+            Picasso.with(getContext())
+                    .load(movie.getPosterPath())
+                    .placeholder(android.R.drawable.ic_menu_report_image)
+                    .transform(new RoundedCornersTransformation(10, 10))
+                    .into(viewHolder.posterImageView);
+        } else if (viewHolder.backdropImageView != null) {
+            viewHolder.backdropImageView.setImageResource(0);
+            Picasso.with(getContext())
+                    .load(movie.getBackdropPath())
+                    .resize(1000, 0)
+                    .placeholder(android.R.drawable.ic_menu_report_image)
+                    .transform(new RoundedCornersTransformation(10, 10))
+                    .into(viewHolder.backdropImageView);
+        }
         return convertView;
     }
 }
